@@ -2,7 +2,9 @@ import {Flex,Box,Heading,FormControl,FormLabel,Input,Button,Alert }from '@chakra
 import { useFormik} from 'formik';
 import validationSchema from "./validations.js";
 import {fetchRegister} from '../../../api.js';
+import {useAuth} from '../../../contexts/AuthContext.js';
 function Signup(){
+	const {login}=useAuth();
 	const formik = useFormik({
 		initialValues:{
 			email:"",
@@ -13,6 +15,7 @@ function Signup(){
 		onSubmit:async(values,bag)=>{
 			try{
 				const registerResponse = await fetchRegister({email:values.email,password:values.password});
+				login(registerResponse);
 			}catch(e){
 				bag.setErrors({general:e.response.data.message});
 			}
