@@ -3,7 +3,7 @@ import { useFormik} from 'formik';
 import validationSchema from "./validations.js";
 import {fetchRegister} from '../../../api.js';
 import {useAuth} from '../../../contexts/AuthContext.js';
-function Signup(){
+function Signup({history}){
 	const {login}=useAuth();
 	const formik = useFormik({
 		initialValues:{
@@ -16,6 +16,7 @@ function Signup(){
 			try{
 				const registerResponse = await fetchRegister({email:values.email,password:values.password});
 				login(registerResponse);
+				history.push('/profile');
 			}catch(e){
 				bag.setErrors({general:e.response.data.message});
 			}
