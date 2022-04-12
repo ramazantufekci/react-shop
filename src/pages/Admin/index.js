@@ -19,7 +19,7 @@ function Admin(){
 					<Link to={`${url}/orders`}>Orders</Link>
 				</li>
 				<li>
-					<Link to={`${url}/products`}>Product</Link>
+					<Link to={`${url}/products`}>Products</Link>
 				</li>
 			</ul>
 		</nav>
